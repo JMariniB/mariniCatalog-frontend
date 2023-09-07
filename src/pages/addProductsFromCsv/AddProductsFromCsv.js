@@ -9,13 +9,6 @@ import {
 import Papa from "papaparse"; // Importa papaparse
 import { RiFileUploadLine } from "react-icons/ri";
 
-const initialState = {
-  name: "",
-  category: "",
-  quantity: "",
-  price: "",
-};
-
 const AddProductsFromCSV = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

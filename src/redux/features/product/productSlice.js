@@ -14,6 +14,9 @@ const initialState = {
   category: [],
 };
 
+const BATCH_SIZE = 200; // Tamaño de lote predeterminado
+
+
 // Create New Product
 export const createProduct = createAsyncThunk(
   "products/create",
@@ -34,11 +37,29 @@ export const createProduct = createAsyncThunk(
 );
 
 // Create New Products bulk
+
+
 export const createProducts = createAsyncThunk(
   "productsBulk/create",
   async (jsonData, thunkAPI) => {
     try {
-      return await productService.createProducts(jsonData);
+      // Divide el JSON en lotes más pequeños
+      const batches = [];
+      for (let i = 0; i < jsonData.length; i += BATCH_SIZE) {
+        const batch = jsonData.slice(i, i + BATCH_SIZE);
+        batches.push(batch);
+      }
+
+      // Realiza las solicitudes en lotes
+      const responses = [];
+      for (const batch of batches) {
+        const response = await productService.createProducts(batch);
+        responses.push(response);
+      }
+
+      // Puedes procesar las respuestas si es necesario
+
+      return responses;
     } catch (error) {
       const message =
         (error.response &&
