@@ -12,6 +12,7 @@ export const validateEmail = (email) => {
 // Register User
 export const registerUser = async (userData) => {
   try {
+    console.log(userData)
     const response = await axios.post(
       `${BACKEND_URL}/api/users/register`,
       userData,

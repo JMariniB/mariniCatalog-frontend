@@ -14,6 +14,7 @@ const initialState = {
   email: "",
   password: "",
   password2: "",
+  invitationPwd: "",
 };
 
 const Register = () => {
@@ -21,7 +22,7 @@ const Register = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setformData] = useState(initialState);
-  const { name, email, password, password2 } = formData;
+  const { name, email, password, password2, invitationPwd} = formData;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -31,7 +32,7 @@ const Register = () => {
   const register = async (e) => {
     e.preventDefault();
 
-    if (!name || !email || !password) {
+    if (!name || !email || !password || !invitationPwd) {
       return toast.error("All fields are required");
     }
     if (password.length < 6) {
@@ -48,6 +49,7 @@ const Register = () => {
       name,
       email,
       password,
+      invitationPwd
     };
     setIsLoading(true);
     try {
@@ -103,6 +105,14 @@ const Register = () => {
               required
               name="password2"
               value={password2}
+              onChange={handleInputChange}
+            />
+            <input
+              type="text"
+              placeholder="Invitation code"
+              required
+              name="invitationPwd"
+              value={invitationPwd}
               onChange={handleInputChange}
             />
             <button type="submit" className="--btn --btn-primary --btn-block">
