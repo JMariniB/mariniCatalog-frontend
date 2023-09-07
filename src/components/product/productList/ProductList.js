@@ -92,6 +92,7 @@ const ProductList = ({ products, isLoading }) => {
     dispatch(FILTER_PRODUCTS({ products, search }));
   }, [products, search, dispatch]);
 
+  //Define los valores de filtros por defecto
   const filterValue = [
     { name: 'amzorderid', operator: 'contains', type: 'string', value: '' },
     { name: 'name', operator: 'contains', type: 'string', value: '' },
@@ -107,6 +108,9 @@ const ProductList = ({ products, isLoading }) => {
     { name: 'pendingPublish', operator: 'eq', type: 'bool', value: undefined },
     { name: 'isPublished', operator: 'eq', type: 'bool', value: undefined  },
   ];
+
+  //Define la ordenación por defecto
+  const defaultSortInfo = [{ name: 'amzorderdate', dir: -1 }];
 
   // Define las columnas para ReactDataGrid
   const columns = [
@@ -230,6 +234,7 @@ const ProductList = ({ products, isLoading }) => {
               columns={columns}
               editable={true}
               defaultFilterValue={filterValue}
+              defaultSortInfo={defaultSortInfo}
               pagination
               defaultLimit={10}
               scrollThreshold={0.7}
