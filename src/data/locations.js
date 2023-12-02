@@ -403,6 +403,406 @@ const getFixedLocations = () => {
   {
     "id": "B099",
     "label": "B099"
+  },
+  {
+    "id": "CA01",
+    "label": "CA01"
+  },
+  {
+    "id": "CA02",
+    "label": "CA02"
+  },
+  {
+    "id": "CA03",
+    "label": "CA03"
+  },
+  {
+    "id": "CA04",
+    "label": "CA04"
+  },
+  {
+    "id": "CA05",
+    "label": "CA05"
+  },
+  {
+    "id": "CA06",
+    "label": "CA06"
+  },
+  {
+    "id": "CA07",
+    "label": "CA07"
+  },
+  {
+    "id": "CA08",
+    "label": "CA08"
+  },
+  {
+    "id": "CA09",
+    "label": "CA08"
+  },
+  {
+    "id": "CA09",
+    "label": "CA09"
+  },
+  {
+    "id": "CA10",
+    "label": "CA10"
+  },
+  {
+    "id": "CA11",
+    "label": "CA11"
+  },
+  {
+    "id": "CA12",
+    "label": "CA12"
+  },
+  {
+    "id": "CA13",
+    "label": "CA013"
+  },
+  {
+    "id": "CA14",
+    "label": "CA14"
+  },
+  {
+    "id": "CA15",
+    "label": "CA15"
+  },
+  {
+    "id": "CA16",
+    "label": "CA16"
+  },
+  {
+    "id": "CA17",
+    "label": "CA17"
+  },
+  {
+    "id": "CA18",
+    "label": "CA18"
+  },
+  {
+    "id": "CA19",
+    "label": "CA19"
+  },
+  {
+    "id": "CA20",
+    "label": "CA20"
+  },
+  {
+    "id": "CA21",
+    "label": "CA21"
+  },
+  {
+    "id": "CA22",
+    "label": "CA22"
+  },
+  {
+    "id": "CA23",
+    "label": "CA23"
+  },
+  {
+    "id": "CA24",
+    "label": "CA24"
+  },
+  {
+    "id": "CA25",
+    "label": "CA25"
+  },
+  {
+    "id": "CA26",
+    "label": "CA26"
+  },
+  {
+    "id": "CA27",
+    "label": "CA27"
+  },
+  {
+    "id": "CA28",
+    "label": "CA28"
+  },
+  {
+    "id": "CA29",
+    "label": "CA29"
+  },
+  {
+    "id": "CA30",
+    "label": "CA30"
+  },
+  {
+    "id": "CA31",
+    "label": "CA31"
+  },
+  {
+    "id": "CA32",
+    "label": "CA32"
+  },
+  {
+    "id": "CA33",
+    "label": "CA33"
+  },
+  {
+    "id": "CA34",
+    "label": "CA34"
+  },
+  {
+    "id": "CA35",
+    "label": "CA35"
+  },
+  {
+    "id": "CA36",
+    "label": "CA36"
+  },
+  {
+    "id": "CA37",
+    "label": "CA37"
+  },
+  {
+    "id": "CA38",
+    "label": "CA38"
+  },
+  {
+    "id": "CA39",
+    "label": "CA39"
+  },
+  {
+    "id": "CA40",
+    "label": "CA40"
+  },
+  {
+    "id": "CA41",
+    "label": "CA41"
+  },
+  {
+    "id": "CA42",
+    "label": "CA42"
+  },
+  {
+    "id": "CA43",
+    "label": "CA43"
+  },
+  {
+    "id": "CA44",
+    "label": "CA44"
+  },
+  {
+    "id": "CA45",
+    "label": "CA45"
+  },
+  {
+    "id": "CA46",
+    "label": "CA46"
+  },
+  {
+    "id": "CA47",
+    "label": "CA47"
+  },
+  {
+    "id": "CA48",
+    "label": "CA48"
+  },
+  {
+    "id": "CA49",
+    "label": "CA49"
+  },
+  {
+    "id": "CA50",
+    "label": "CA50"
+  },
+  {
+    "id": "CA51",
+    "label": "CA51"
+  },
+  {
+    "id": "CA52",
+    "label": "CA52"
+  },
+  {
+    "id": "CA53",
+    "label": "CA53"
+  },
+  {
+    "id": "CA54",
+    "label": "CA54"
+  },
+  {
+    "id": "CA55",
+    "label": "CA55"
+  },
+  {
+    "id": "CA56",
+    "label": "CA56"
+  },
+  {
+    "id": "CA57",
+    "label": "CA57"
+  },
+  {
+    "id": "CA58",
+    "label": "CA58"
+  },
+  {
+    "id": "CA59",
+    "label": "CA59"
+  },
+  {
+    "id": "CA60",
+    "label": "CA60"
+  },
+  {
+    "id": "CA61",
+    "label": "CA61"
+  },
+  {
+    "id": "CA62",
+    "label": "CA62"
+  },
+  {
+    "id": "CA63",
+    "label": "CA63"
+  },
+  {
+    "id": "CA64",
+    "label": "CA64"
+  },
+  {
+    "id": "CA65",
+    "label": "CA65"
+  },
+  {
+    "id": "CA66",
+    "label": "CA66"
+  },
+  {
+    "id": "CA67",
+    "label": "CA67"
+  },
+  {
+    "id": "CA68",
+    "label": "CA68"
+  },
+  {
+    "id": "CA69",
+    "label": "CA69"
+  },
+  {
+    "id": "CA70",
+    "label": "CA70"
+  },
+  {
+    "id": "CA71",
+    "label": "CA71"
+  },
+  {
+    "id": "CA72",
+    "label": "CA72"
+  },
+  {
+    "id": "CA73",
+    "label": "CA73"
+  },
+  {
+    "id": "CA74",
+    "label": "CA74"
+  },
+  {
+    "id": "CA75",
+    "label": "CA75"
+  },
+  {
+    "id": "CA76",
+    "label": "CA76"
+  },
+  {
+    "id": "CA77",
+    "label": "CA77"
+  },
+  {
+    "id": "CA78",
+    "label": "CA78"
+  },
+  {
+    "id": "CA79",
+    "label": "CA79"
+  },
+  {
+    "id": "CA80",
+    "label": "CA80"
+  },
+  {
+    "id": "CA81",
+    "label": "CA81"
+  },
+  {
+    "id": "CA82",
+    "label": "CA82"
+  },
+  {
+    "id": "CA83",
+    "label": "CA83"
+  },
+  {
+    "id": "CA84",
+    "label": "CA84"
+  },
+  {
+    "id": "CA85",
+    "label": "CA85"
+  },
+  {
+    "id": "CA86",
+    "label": "CA86"
+  },
+  {
+    "id": "CA87",
+    "label": "CA87"
+  },
+  {
+    "id": "CA88",
+    "label": "CA88"
+  },
+  {
+    "id": "CA89",
+    "label": "CA89"
+  },
+  {
+    "id": "CA90",
+    "label": "CA90"
+  },
+  {
+    "id": "CA91",
+    "label": "CA91"
+  },
+  {
+    "id": "CA92",
+    "label": "CA92"
+  },
+  {
+    "id": "CA93",
+    "label": "CA93"
+  },
+  {
+    "id": "CA94",
+    "label": "CA94"
+  },
+  {
+    "id": "CA95",
+    "label": "CA95"
+  },
+  {
+    "id": "CA96",
+    "label": "CA96"
+  },
+  {
+    "id": "CA97",
+    "label": "CA97"
+  },
+  {
+    "id": "CA98",
+    "label": "CA98"
+  },
+  {
+    "id": "CA99",
+    "label": "CA99"
   }
   
 ];
