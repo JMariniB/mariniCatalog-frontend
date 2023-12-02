@@ -458,7 +458,7 @@ const getFixedLocations = () => {
   },
   {
     "id": "CA13",
-    "label": "CA013"
+    "label": "CA13"
   },
   {
     "id": "CA14",
