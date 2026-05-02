@@ -1,27 +1,29 @@
 .contact {
   .card {
-    padding: 1rem;
-    border: 1px solid #ccc;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
   }
 
   .card2 {
-    padding: 2rem;
-    background-color: var(--light-blue);
+    padding: 2.4rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    border-radius: var(--radius-lg);
     color: #fff;
-    h3,
-    p {
-      color: #fff;
-    }
+    h3, p { color: #fff; }
+
     .icons {
-      margin: 3rem 0;
+      margin: 2.4rem 0;
       span {
         display: flex;
-        justify-content: flex-start;
         align-items: center;
-        margin-bottom: 1rem;
-        a,
-        p {
-          margin-left: 5px;
+        gap: 1rem;
+        margin-bottom: 1.2rem;
+        a, p {
+          color: rgba(255, 255, 255, 0.85);
+          font-size: 1.4rem;
+          margin: 0;
         }
       }
     }
@@ -30,17 +32,20 @@
   .section {
     display: flex;
     align-items: flex-start;
+    gap: 2rem;
 
     form {
-      width: 500px;
+      flex: 1;
       max-width: 100%;
-      margin-right: 1rem;
-      margin-bottom: 1rem;
+
       label {
         display: block;
         font-size: 1.4rem;
         font-weight: 500;
+        color: var(--color-text-2);
+        margin-bottom: 4px;
       }
+
       input[type="text"],
       input[type="number"],
       input[type="file"],
@@ -49,23 +54,29 @@
       textarea,
       input[type="password"] {
         display: block;
-        font-size: 1.6rem;
-        font-weight: 300;
-        padding: 1rem;
-        margin: 1rem auto;
+        font-family: var(--font-family);
+        font-size: 1.5rem;
+        padding: 1rem 1.2rem;
+        margin: 0.6rem 0 1.2rem;
         width: 100%;
-        border: 1px solid #777;
-        border-radius: 3px;
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius-sm);
         outline: none;
+        background: var(--surface);
+        color: var(--color-text);
+        transition: border-color 0.2s, box-shadow 0.2s;
+
+        &:focus {
+          border-color: var(--color-primary);
+          box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+        }
       }
     }
   }
 }
 
-@media screen and (max-width: 700px) {
-  .contact {
-    .section {
-      flex-direction: column;
-    }
+@media (max-width: 768px) {
+  .contact .section {
+    flex-direction: column;
   }
 }

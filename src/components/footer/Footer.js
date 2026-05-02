@@ -1,12 +1,13 @@
 import React from "react";
+import "./Footer.scss";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear(); // Obtiene el año actual
+  const currentYear = new Date().getFullYear();
 
   return (
-    <div className="--flex-center --py2">
-      <p>All Rights Reserved. &copy; MariniCatalog {currentYear}</p>
-    </div>
+    <footer className="app-footer">
+      <p>© {currentYear} MariniCatalog — Todos los derechos reservados</p>
+    </footer>
   );
 };
 

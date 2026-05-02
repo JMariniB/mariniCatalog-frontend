@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import { useSidebar } from "../../context/SidebarContext";
 
 const activeLink = ({ isActive }) => (isActive ? "active" : "link");
 const activeSublink = ({ isActive }) => (isActive ? "active" : "link");
 
 const SidebarItem = ({ item, isOpen }) => {
   const [expandMenu, setExpandMenu] = useState(false);
+  const { isMobile, closeMobile } = useSidebar();
+
+  const handleNavClick = () => {
+    if (isMobile) closeMobile();
+  };
 
   if (item.childrens) {
     return (
@@ -15,22 +21,21 @@ const SidebarItem = ({ item, isOpen }) => {
           expandMenu ? "sidebar-item s-parent open" : "sidebar-item s-parent"
         }
       >
-        <div className="sidebar-title">
+        <div
+          className="sidebar-title"
+          onClick={() => setExpandMenu(!expandMenu)}
+        >
           <span>
             {item.icon && <div className="icon">{item.icon}</div>}
             {isOpen && <div>{item.title}</div>}
           </span>
-          <MdKeyboardArrowRight
-            size={25}
-            className="arrow-icon"
-            onClick={() => setExpandMenu(!expandMenu)}
-          />
+          <MdKeyboardArrowRight size={20} className="arrow-icon" />
         </div>
         <div className="sidebar-content">
-          {item.childrens.map((child, index) => {
-            return (
+          <div className="sublink">
+            {item.childrens.map((child, index) => (
               <div key={index} className="s-child">
-                <NavLink to={child.path} className={activeSublink}>
+                <NavLink to={child.path} className={activeSublink} onClick={handleNavClick}>
                   <div className="sidebar-item">
                     <div className="sidebar-title">
                       <span>
@@ -41,14 +46,14 @@ const SidebarItem = ({ item, isOpen }) => {
                   </div>
                 </NavLink>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </div>
     );
   } else {
     return (
-      <NavLink to={item.path} className={activeLink}>
+      <NavLink to={item.path} className={activeLink} onClick={handleNavClick}>
         <div className="sidebar-item s-parent">
           <div className="sidebar-title">
             <span>

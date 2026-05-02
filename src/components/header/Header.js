@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectName, SET_LOGIN } from "../../redux/features/auth/authSlice";
 import { logoutUser } from "../../services/authService";
-import { FaArrowLeft } from "react-icons/fa"; // Importa el icono de flecha
+import { HiArrowLeft, HiMenu } from "react-icons/hi";
+import { useSidebar } from "../../context/SidebarContext";
+import "./Header.scss";
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const name = useSelector(selectName);
+  const { toggle, isMobile } = useSidebar();
 
   const logout = async () => {
     await logoutUser();
@@ -16,27 +19,35 @@ const Header = () => {
     navigate("/login");
   };
 
-  const goBack = () => {
-    // Utiliza la función goBack para regresar al último sitio visitado
-    navigate(-1);
-  };
+  const goBack = () => navigate(-1);
 
   return (
-    <div className="--pad header">
-      <div className="--flex-between">
-      <button onClick={goBack} className="--btn --btn-primary">
-          <FaArrowLeft />   
-        </button>
-        <h3>
-          <span className="--fw-thin">Welcome, </span>
-          <span className="--color-danger">{name}</span>
-        </h3>
-        <button onClick={logout} className="--btn --btn-danger">
-          Logout
+    <header className="app-header">
+      <div className="app-header__left">
+        {isMobile && (
+          <button className="app-header__icon-btn" onClick={toggle} aria-label="Abrir menú">
+            <HiMenu />
+          </button>
+        )}
+        <button className="app-header__icon-btn app-header__back" onClick={goBack} aria-label="Volver">
+          <HiArrowLeft />
         </button>
       </div>
-      <hr />
-    </div>
+
+      <div className="app-header__user">
+        <div className="app-header__avatar">
+          {name ? name[0].toUpperCase() : "U"}
+        </div>
+        <div className="app-header__info">
+          <span className="app-header__greeting">Bienvenido</span>
+          <span className="app-header__name">{name}</span>
+        </div>
+      </div>
+
+      <button className="app-header__logout" onClick={logout}>
+        Cerrar sesión
+      </button>
+    </header>
   );
 };
 

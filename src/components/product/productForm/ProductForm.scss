@@ -1,17 +1,25 @@
 .add-product {
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
+
   .card {
     width: 100%;
-    max-width: 500px;
-    padding: 1rem;
+    max-width: 560px;
+    padding: 2.4rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
   }
+
   form {
     label {
       display: block;
       font-size: 1.4rem;
       font-weight: 500;
-      color: var(--color-dark);
+      color: var(--color-text-2);
+      margin-bottom: 4px;
     }
+
     input[type="text"],
     input[type="number"],
     input[type="file"],
@@ -19,37 +27,54 @@
     select,
     input[type="password"] {
       display: block;
-      font-size: 1.6rem;
-      font-weight: 300;
-      padding: 1rem;
-      margin: 1rem auto;
+      font-family: var(--font-family);
+      font-size: 1.5rem;
+      padding: 1rem 1.2rem;
+      margin: 0.4rem 0 1.4rem;
       width: 100%;
-      border: 1px solid #777;
-      border-radius: 3px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
       outline: none;
+      background: var(--surface-2);
+      color: var(--color-text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+
+      &:focus {
+        border-color: var(--color-primary);
+        background: var(--surface);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+      }
+    }
+
+    select {
+      cursor: pointer;
     }
   }
 }
 
 .group {
-  border: 1px solid var(--dark-blue);
-  padding: 5px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  background: var(--surface-2);
 }
 
 .image-preview {
   width: 100%;
-  height: 100%;
   max-height: 280px;
-  background: var(--dark-blue);
+  background: var(--bg);
+  border: 1px solid var(--border);
   padding: 1rem;
-  border-radius: 3px;
+  border-radius: var(--radius);
   overflow: hidden;
-  // display: none;
   transition: all 0.3s;
+  display: none;
 }
 
 .image-preview img {
   width: 100%;
+  border-radius: var(--radius-sm);
+  object-fit: contain;
 }
 
 .image-show {

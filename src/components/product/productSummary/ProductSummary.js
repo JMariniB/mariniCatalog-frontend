@@ -44,7 +44,7 @@ const ProductSummary = ({ products }) => {
         <InfoBox
           icon={productIcon}
           title={"Total Products"}
-          count={products.length}
+          count={products.filter(p => p.location !== "PEND" && p.location !== "SOLD").length}
           bgColor="card1"
         />
         <InfoBox

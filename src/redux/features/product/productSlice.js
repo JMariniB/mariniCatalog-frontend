@@ -148,6 +148,42 @@ export const updateProduct = createAsyncThunk(
   }
 );
 
+// Update price for a single product
+export const updateSinglePrice = createAsyncThunk(
+  "products/updateSinglePrice",
+  async (id, thunkAPI) => {
+    try {
+      return await productService.updateSinglePrice(id);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// Update prices from Amazon.es
+export const updatePrices = createAsyncThunk(
+  "products/updatePrices",
+  async (_, thunkAPI) => {
+    try {
+      return await productService.updatePrices();
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 const productSlice = createSlice({
   name: "product",
   initialState,
@@ -155,11 +191,13 @@ const productSlice = createSlice({
     CALC_STORE_VALUE(state, action) {
       const products = action.payload;
       const array = [];
-      products.map((item) => {
-        const { price, quantity } = item;
-        const productValue = price * quantity;
-        return array.push(productValue);
-      });
+      products
+        .filter((item) => item.location !== "PEND" && item.location !== "SOLD")
+        .map((item) => {
+          const { price, quantity } = item;
+          const productValue = price * quantity;
+          return array.push(productValue);
+        });
       const totalValue = array.reduce((a, b) => {
         return a + b;
       }, 0);
@@ -285,6 +323,36 @@ const productSlice = createSlice({
         toast.success("Product updated successfully");
       })
       .addCase(updateProduct.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error(action.payload);
+      })
+      .addCase(updateSinglePrice.pending, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(updateSinglePrice.fulfilled, (state) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+      })
+      .addCase(updateSinglePrice.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error(action.payload);
+      })
+      .addCase(updatePrices.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updatePrices.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        const { total, updated, failed } = action.payload;
+        toast.success(`Precios actualizados: ${updated}/${total} (${failed} errores)`);
+      })
+      .addCase(updatePrices.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

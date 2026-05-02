@@ -4,11 +4,14 @@ import "./InfoBox.scss";
 const InfoBox = ({ bgColor, title, count, icon }) => {
   return (
     <div className={`info-box ${bgColor}`}>
-      <span className="info-icon --color-white">{icon}</span>
-      <span className="info-text">
-        <p>{title}</p>
-        <h4>{count}</h4>
-      </span>
+      <div className="info-box__body">
+        <div className="info-box__text">
+          <p className="info-box__title">{title}</p>
+          <h3 className="info-box__count">{count}</h3>
+        </div>
+        <div className="info-box__icon-wrap">{icon}</div>
+      </div>
+      <div className="info-box__decoration" />
     </div>
   );
 };

@@ -1,53 +1,114 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Sidebar.scss";
-import { HiMenuAlt3 } from "react-icons/hi";
 import { RiProductHuntLine } from "react-icons/ri";
+import { HiOutlineChevronLeft } from "react-icons/hi";
 import menu from "../../data/sidebar";
 import SidebarItem from "./SidebarItem";
 import { useNavigate } from "react-router-dom";
+import { SidebarContext } from "../../context/SidebarContext";
+
+const MOBILE_BREAKPOINT = 768;
 
 const Sidebar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(true);
-  const toggle = () => setIsOpen(!isOpen);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(
+    window.innerWidth < MOBILE_BREAKPOINT
+  );
   const navigate = useNavigate();
 
-  const goHome = () => {
-    navigate("/");
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth < MOBILE_BREAKPOINT;
+      setIsMobile(mobile);
+      if (!mobile) setIsMobileOpen(false);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const toggle = () => {
+    if (isMobile) {
+      setIsMobileOpen((prev) => !prev);
+    } else {
+      setIsOpen((prev) => !prev);
+    }
   };
 
+  const closeMobile = () => setIsMobileOpen(false);
+
+  const goHome = () => navigate("/");
+
+  const contextValue = { isOpen, isMobileOpen, isMobile, toggle, closeMobile };
+
+  const sidebarClass = [
+    "sidebar",
+    isMobile
+      ? isMobileOpen
+        ? "sidebar--mobile-open"
+        : "sidebar--mobile-hidden"
+      : isOpen
+      ? "sidebar--expanded"
+      : "sidebar--collapsed",
+  ].join(" ");
+
+  const mainClass = [
+    "main-content",
+    isMobile
+      ? "main-content--mobile"
+      : isOpen
+      ? "main-content--expanded"
+      : "main-content--collapsed",
+  ].join(" ");
+
   return (
-    <div className="layout">
-      <div className="sidebar" style={{ width: isOpen ? "230px" : "60px" }}>
-        <div className="top_section">
-          <div className="logo" style={{ display: isOpen ? "block" : "none" }}>
-            <RiProductHuntLine
-              size={35}
-              style={{ cursor: "pointer" }}
-              onClick={goHome}
-            />
+    <SidebarContext.Provider value={contextValue}>
+      <div className="layout">
+        {/* Backdrop overlay for mobile */}
+        {isMobile && isMobileOpen && (
+          <div className="sidebar-backdrop" onClick={closeMobile} />
+        )}
+
+        <aside className={sidebarClass}>
+          {/* Sidebar top: logo + collapse toggle */}
+          <div className="sidebar-header">
+            <div className="sidebar-logo" onClick={goHome} title="Ir al inicio">
+              <RiProductHuntLine className="sidebar-logo__icon" />
+              <span className="sidebar-logo__text">MariniCatalog</span>
+            </div>
+            {!isMobile && (
+              <button
+                className={`sidebar-collapse-btn ${!isOpen ? "sidebar-collapse-btn--rotated" : ""}`}
+                onClick={toggle}
+                title={isOpen ? "Colapsar" : "Expandir"}
+              >
+                <HiOutlineChevronLeft />
+              </button>
+            )}
           </div>
 
-          <div
-            className="bars"
-            style={{ marginLeft: isOpen ? "100px" : "0px" }}
-          >
-            <HiMenuAlt3 onClick={toggle} />
+          {/* Navigation items */}
+          <nav className="sidebar-nav">
+            <ul>
+              {menu.map((item, index) => (
+                <SidebarItem
+                  key={index}
+                  item={item}
+                  isOpen={isOpen || isMobile}
+                />
+              ))}
+            </ul>
+          </nav>
+
+          {/* Sidebar footer */}
+          <div className="sidebar-footer">
+            <span className="sidebar-footer__text">v1.0.0</span>
           </div>
-        </div>
-        {menu.map((item, index) => {
-          return <SidebarItem key={index} item={item} isOpen={isOpen} />;
-        })}
+        </aside>
+
+        <main className={mainClass}>{children}</main>
       </div>
-
-      <main
-        style={{
-          paddingLeft: isOpen ? "230px" : "60px",
-          transition: "all .5s",
-        }}
-      >
-        {children}
-      </main>
-    </div>
+    </SidebarContext.Provider>
   );
 };
 

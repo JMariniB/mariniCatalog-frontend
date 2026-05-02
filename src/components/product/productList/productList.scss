@@ -1,66 +1,331 @@
 .product-list {
-  color: #333;
-  .table {
-    padding: 5px;
-    width: 100%;
-    overflow-x: auto;
+  .list-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
 
-    .search {
-      width: 100%;
-      max-width: 300px;
+  .list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    padding: 1.8rem 2rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+
+    &__title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin: 0;
     }
 
-    table {
-      border-collapse: collapse;
-      width: 100%;
+    &__subtitle {
+      font-size: 1.3rem;
+      color: var(--color-muted);
+      margin: 0;
+      font-weight: 400;
+    }
+
+    &__right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+  }
+
+  .list-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    input {
+      font-family: var(--font-family);
       font-size: 1.4rem;
+      padding: 0.8rem 1.2rem 0.8rem 3.6rem;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface-2);
+      color: var(--color-text);
+      outline: none;
+      width: 22rem;
+      transition: all var(--transition-fast);
 
-      thead {
-        border-top: 2px solid var(--light-blue);
-        border-bottom: 2px solid var(--light-blue);
+      &::placeholder { color: var(--color-muted); }
+
+      &:focus {
+        border-color: var(--color-primary);
+        background: var(--surface);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+        width: 26rem;
       }
+    }
 
-      th {
-        border: 1px solid #eee;
-      }
+    .search-icon {
+      position: absolute;
+      left: 1.1rem;
+      color: var(--color-muted);
+      font-size: 1.5rem;
+      pointer-events: none;
+    }
+  }
 
-      th,
-      td {
-        vertical-align: top;
-        text-align: left;
-        padding: 8px;
+  .list-body {
+    padding: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 
-        &.icons {
-          display: flex;
-          justify-content: flex-start;
-          align-items: center;
-          > * {
-            margin-right: 7px;
-            cursor: pointer;
-            vertical-align: middle;
-            align-self: center;
-          }
-        }
-      }
+    /* Scrollbar styling */
+    &::-webkit-scrollbar { height: 6px; }
+    &::-webkit-scrollbar-track { background: var(--bg); }
+    &::-webkit-scrollbar-thumb {
+      background: var(--border-2);
+      border-radius: var(--radius-full);
+    }
+    &::-webkit-scrollbar-thumb:hover { background: var(--color-muted); }
+  }
 
-      tr {
-        border-bottom: 1px solid #ccc;
-      }
+  /* ── Column toggle button ────────────────────────── */
+  .col-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-family);
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: 0.7rem 1.2rem;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border);
+    background: var(--surface);
+    color: var(--color-muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
 
-      tr:nth-child(even) {
-        background-color: #fff;
-      }
-      tbody {
-        tr:hover {
-          cursor: pointer;
-          background-color: rgba(31, 147, 255, 0.3);
-        }
+    &:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      background: rgba(99, 102, 241, 0.05);
+    }
+
+    &--active {
+      border-color: var(--color-primary);
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--color-primary);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    span {
+      @media (max-width: 480px) {
+        display: none;
       }
     }
   }
 
-  .datagrid-container {
-    width: 100%; /* Establece un ancho adecuado, como un porcentaje o un valor en píxeles */
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 2rem;
+    color: var(--color-muted);
+    gap: 1rem;
+
+    &__icon { font-size: 4rem; opacity: 0.4; }
+    &__text { font-size: 1.5rem; }
   }
-  
+
+  /* ── ReactDataGrid overrides ──────────────────── */
+  .InovuaReactDataGrid {
+    font-family: var(--font-family) !important;
+    font-size: 1.35rem !important;
+    border: none !important;
+    border-radius: 0 !important;
+  }
+
+  .InovuaReactDataGrid__header {
+    background: var(--surface-2) !important;
+    border-bottom: 2px solid var(--border) !important;
+  }
+
+  .InovuaReactDataGrid__column-header {
+    background: var(--surface-2) !important;
+    color: var(--color-text-2) !important;
+    font-weight: 600 !important;
+    font-size: 1.2rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.3px !important;
+    border-right: 1px solid var(--border) !important;
+  }
+
+  .InovuaReactDataGrid__row {
+    border-bottom: 1px solid var(--border) !important;
+    transition: background var(--transition-fast) !important;
+
+    &:hover {
+      background: rgba(99, 102, 241, 0.04) !important;
+    }
+  }
+
+  .InovuaReactDataGrid__row--even {
+    background: var(--surface-2) !important;
+  }
+
+  .InovuaReactDataGrid__row--odd {
+    background: var(--surface) !important;
+  }
+
+  .InovuaReactDataGrid__cell {
+    border-right: 1px solid var(--border) !important;
+    color: var(--color-text) !important;
+    font-size: 1.35rem !important;
+    padding: 0 1.2rem !important;
+  }
+
+  /* Filter row */
+  .InovuaReactDataGrid__column-header__filter-wrapper {
+    background: var(--bg) !important;
+    border-top: 1px solid var(--border) !important;
+  }
+
+  .inovua-react-toolkit-text-input {
+    font-family: var(--font-family) !important;
+    font-size: 1.2rem !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
+    background: var(--surface) !important;
+
+    &:focus-within {
+      border-color: var(--color-primary) !important;
+      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15) !important;
+    }
+  }
+
+  /* Pagination */
+  .InovuaReactDataGrid__footer {
+    background: var(--surface-2) !important;
+    border-top: 1px solid var(--border) !important;
+    padding: 0.8rem 1.6rem !important;
+  }
+
+  /* Price cell with inline update button */
+  .price-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    width: 100%;
+
+    span {
+      flex: 1;
+    }
+
+    &__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: var(--radius-sm);
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      color: var(--color-muted);
+      opacity: 0;
+      transition: all var(--transition-fast);
+      flex-shrink: 0;
+
+      &:hover { color: var(--color-primary); background: var(--bg); }
+      &:disabled { opacity: 0.3 !important; cursor: not-allowed; }
+    }
+  }
+
+  .InovuaReactDataGrid__row:hover .price-cell__btn {
+    opacity: 1;
+  }
+
+  /* Action icons */
+  .action-icons {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    a, button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 3rem;
+      height: 3rem;
+      border-radius: var(--radius-sm);
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      color: var(--color-muted);
+      text-decoration: none;
+
+      &:hover {
+        background: var(--bg);
+        transform: scale(1.1);
+      }
+    }
+
+    .icon-amazon:hover { color: #ff9900; }
+    .icon-sell:hover   { color: var(--color-success); }
+    .icon-delete:hover { color: var(--color-danger); }
+  }
+}
+
+/* ── Mobile ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .product-list {
+    .list-header {
+      padding: 1.2rem 1.4rem;
+      &__title { font-size: 1.6rem; }
+    }
+
+    .list-search input {
+      width: 100%;
+      &:focus { width: 100%; }
+    }
+
+    .list-header__right {
+      width: 100%;
+    }
+
+    /* Fuente y celdas más compactas */
+    .InovuaReactDataGrid {
+      font-size: 1.2rem !important;
+    }
+
+    .InovuaReactDataGrid__column-header {
+      font-size: 1.1rem !important;
+      padding: 0 0.8rem !important;
+    }
+
+    .InovuaReactDataGrid__cell {
+      font-size: 1.2rem !important;
+      padding: 0 0.8rem !important;
+    }
+
+    /* Iconos de acción más pequeños en móvil */
+    .action-icons {
+      gap: 0.4rem;
+
+      a, button {
+        width: 2.6rem;
+        height: 2.6rem;
+      }
+    }
+  }
 }

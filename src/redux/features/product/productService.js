@@ -39,6 +39,18 @@ const updateProduct = async (id, formData) => {
   return response.data;
 };
 
+// Update prices from Amazon.es
+const updatePrices = async () => {
+  const response = await axios.post(`${API_URL}update-prices`);
+  return response.data;
+};
+
+// Update price for a single product
+const updateSinglePrice = async (id) => {
+  const response = await axios.post(`${API_URL}${id}/update-price`);
+  return response.data;
+};
+
 const productService = {
   createProduct,
   createProducts,
@@ -46,6 +58,8 @@ const productService = {
   getProduct,
   deleteProduct,
   updateProduct,
+  updatePrices,
+  updateSinglePrice,
 };
 
 export default productService;

@@ -1,25 +1,36 @@
 .search {
-  margin: 5px 0;
   position: relative;
   flex: 1;
 
   .icon {
     position: absolute;
     top: 50%;
-    left: 1rem;
+    left: 1.1rem;
     transform: translateY(-50%);
+    color: var(--color-muted);
+    pointer-events: none;
   }
 
   input[type="text"] {
     display: block;
-    font-size: 1.6rem;
-    font-weight: 300;
-    padding: 1rem;
-    padding-left: 3rem;
-    margin: 1rem auto;
+    font-family: var(--font-family);
+    font-size: 1.4rem;
+    font-weight: 400;
+    padding: 0.9rem 1.2rem 0.9rem 3.4rem;
     width: 100%;
-    border: 1px solid #777;
-    border-radius: 3px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
     outline: none;
+    background: var(--surface-2);
+    color: var(--color-text);
+    transition: all 0.2s;
+
+    &::placeholder { color: var(--color-muted); }
+
+    &:focus {
+      border-color: var(--color-primary);
+      background: var(--surface);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+    }
   }
 }
